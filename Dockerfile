@@ -18,9 +18,12 @@ RUN make install
 WORKDIR /root
 RUN rm -rf html2xhtml*
 
-RUN apt-get install -y pandoc
-RUN apt-get install -y zip
+# Install Pandoc
+RUN wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb
+RUN dpkg --install pandoc*deb
 
+# Install readability
+RUN apt-get install -y zip
 RUN wget https://github.com/mozilla/readability/archive/master.zip
 RUN unzip master.zip
 RUN rm master.zip
